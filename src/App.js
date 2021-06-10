@@ -8,10 +8,10 @@ function App() {
 	const ctx = useContext(AuthContext);
 	return (
 		<>
-			<MainHeader onLogout={logoutHandler} />
+			<MainHeader />
 			<main>
-				{!ctx && <Login />}
-				{ctx && <Home />}
+				{!ctx.isLoggedIn && <Login />}
+				{ctx.isLoggedIn && <Home />}
 			</main>
 		</>
 	);

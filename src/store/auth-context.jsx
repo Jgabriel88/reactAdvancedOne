@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import AuthContext from './auth-context';
 
 const AuthContext = React.createContext({
@@ -9,11 +9,21 @@ const AuthContext = React.createContext({
 
 export const AuthContextProvider = () => {
 	const [isLoggedIn, serIsLoggedIn] = useState(false);
+
+	useEffect(() => {
+		const storedUserLoggedInfo = localStorage.getItem('isLoggedIn');
+		if (storedUserLoggedInfo === '1') {
+			setIsLoggedIn(true);
+		}
+	}, []);
+
 	const logoutHandler = () => {
+		localStorage.removeItem('isLoggedIn');
 		setIsloggedIn(false);
 	};
 
 	const loginHandler = () => {
+		localStorage.setItem('isLoggedIn', '1');
 		setIsloggedIn(true);
 	};
 	return (

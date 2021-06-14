@@ -1,6 +1,13 @@
+import { useRef } from 'react';
 import classes from './Input.module.css';
 
 const Input = (props) => {
+	const inputRef = userREf();
+
+	const activate = () => {
+		inputRef.current.focus();
+	};
+
 	return (
 		<div
 			className={`${classes.control} ${

@@ -1,4 +1,5 @@
-import { React, useRef, useImperativeHandle } from 'react';
+import React, { useRef, useImperativeHandle } from 'react';
+
 import classes from './Input.module.css';
 
 const Input = React.forwardRef((props, ref) => {
@@ -19,10 +20,11 @@ const Input = React.forwardRef((props, ref) => {
 			className={`${classes.control} ${
 				props.isValid === false ? classes.invalid : ''
 			}`}>
-			<label htmlFor="email">{props.label} </label>
+			<label htmlFor={props.id}>{props.label}</label>
 			<input
+				ref={inputRef}
 				type={props.type}
-				id={props.invalid}
+				id={props.id}
 				value={props.value}
 				onChange={props.onChange}
 				onBlur={props.onBlur}
